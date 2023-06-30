@@ -59,10 +59,11 @@ export default function ReviewSection() {
           Authorization: token,
         },
       };
-      await axios.get(
+      const result = await axios.get(
         `https://backendpartyplazoo.up.railway.app/api/comments/comments/${id}`,
         config
       );
+      const comments = result?.data?.data
       const mycomment = comments.filter(
         (obj: any) => obj.userId == user._id
       );
