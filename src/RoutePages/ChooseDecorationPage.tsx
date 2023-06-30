@@ -59,7 +59,7 @@ export default function ChooseDecorationPage() {
         <MainBody>
           <StepperComponent active={1} />
           <Heading>
-            <HeadingDiv style={{ width: "33%" }} > Cakes </HeadingDiv>
+            <HeadingDiv style={{ width: "33%" }} > Decoration </HeadingDiv>
             <HeadingDiv style={{ width: "33%" }}>
               {count == 0 ? (
                 <></>

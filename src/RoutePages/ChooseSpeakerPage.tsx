@@ -59,7 +59,7 @@ export default function ChooseSpeakerPage() {
         <MainBody>
           <StepperComponent active={2} />
           <Heading>
-            <HeadingDiv style={{ width: "33%" }} > Cakes </HeadingDiv>
+            <HeadingDiv style={{ width: "33%" }} > Speakers </HeadingDiv>
             <HeadingDiv style={{ width: "33%" }}>
               {count == 0 ? (
                 <></>
