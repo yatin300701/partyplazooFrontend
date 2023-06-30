@@ -242,6 +242,7 @@ export default function HomePage() {
       <FooterBodyComponent />
       <SnackbarComponent
         open={open}
+        duration={2000}
         setOpen={setOpen}
         message={message}
         type={type}
