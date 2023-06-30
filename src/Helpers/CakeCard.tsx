@@ -48,18 +48,19 @@ export default function CakeCard(props: any) {
     );
     setMessage("Added to Cart");
     setType("success");
-    // console.log("working");
     setOpen(true);
   };
   const removeFromCarti = async () => {
     await dispatch(removeFromCart({ id: props.id }));
     setMessage("Removed from Cart");
-    // console.log(cart, "with id ", props.id);
     setType("warning");
     setOpen(true);
   };
   const viewIt = async () => {
     navigate(`/details/${props.type}/${props.id}`);
+    if (0) {
+      console.log(setReload)
+    }
   };
   return (
     <div>

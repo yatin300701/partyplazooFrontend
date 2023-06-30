@@ -68,6 +68,9 @@ export default function SignUpComponent(props: any) {
       setOtpInput(false);
       props.setLoginToggle(false)
     } catch (e: any) {
+      if (0) {
+        console.log(setReload)
+      }
       setMessage(`Error ${e.message}`);
       setType("error");
       setOpen(true);

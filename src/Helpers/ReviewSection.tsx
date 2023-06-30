@@ -126,10 +126,15 @@ export default function ReviewSection() {
                 style={{ padding: "0px 0px 30px 0px" }}
                 name="simple-controlled"
                 value={Number(value)}
-                onChange={(event, newValue) => {
+                onChange={(e, newValue) => {
+                  if (0) {
+                    console.log(e)
+                  }
+
                   if (!newValue) return;
                   setValue(newValue.toString());
                 }}
+
               />
               <Review
                 type="text"

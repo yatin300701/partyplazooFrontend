@@ -11,7 +11,7 @@ import {
 } from "../Styles/Cake.style";
 import { theme } from "../mui-theme";
 import { Box, Card, CardContent, CardMedia, Skeleton, Typography, styled } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import FooterBodyComponent from "../Helpers/FooterBodyComponent";
 import CakeCard from "../Helpers/CakeCard";
