@@ -56,6 +56,9 @@ export const CommentInput = styled("p")(() => ({
   padding: "0px 0px 10px 0px",
   margin: "0px",
   width: "842px",
+  "@media(max-width:1018px)": {
+    width: "auto"
+  },
 }));
 export const CommentBottom = styled("div")(() => ({
   display: "flex",

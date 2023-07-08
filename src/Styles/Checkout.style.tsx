@@ -5,6 +5,10 @@ export const MainBody = styled("div")(() => ({
   display: "grid",
   gridTemplateColumns: "60% 40%",
   backgroundColor: "#e9ecee",
+  "@media(max-width:799px)": {
+    display: "flex",
+    flexDirection: "column"
+  }
   //   gap: "40px",
 }));
 export const RightDisplay = styled("div")(() => ({
@@ -12,19 +16,35 @@ export const RightDisplay = styled("div")(() => ({
   padding: "30px 30px",
   width: "400px",
   backgroundColor: "white",
+  "@media(max-width:965px)": {
+    width: "300px"
+  },
+  "@media(max-width:799px)": {
+    width: "90%",
+    margin: "20px auto",
+    padding: "30px",
+  }
 }));
 export const LeftDisplay = styled("div")(() => ({
   backgroundColor: "white",
   width: "90%",
   margin: "20px auto",
   padding: "30px",
+  "@media(max-width:799px)": {
+
+  }
 }));
 export const CheckoutTitle = styled("div")(() => ({
   display: "flex",
   height: "50px",
+  "@media(max-width:993px)": {
+    flexDirection: "column",
+    height: "auto"
+  }
 }));
 export const CheckoutImg = styled("img")(() => ({
   height: "40px",
+  width: "200px"
 }));
 export const CheckoutHeading = styled("div")(() => ({
   display: "flex",
@@ -32,6 +52,9 @@ export const CheckoutHeading = styled("div")(() => ({
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "end",
+  "@media(max-width:993px)": {
+    // flexDirection: "row"
+  }
 }));
 export const CheckoutH = styled("h3")(() => ({
   fontSize: "20px",
@@ -167,10 +190,14 @@ export const AImg = styled("img")(() => ({
   width: "100px",
   height: "100px",
   borderRadius: "50%",
+  "@media(max-width:1066px)": {
+    display: "none"
+  }
 }));
 export const AddressInput = styled("input")(() => ({
   height: "100px",
   width: "100%",
+  overflow: "hidden"
 }));
 export const AbodyC = styled("div")(() => ({
   display: "flex",
@@ -186,7 +213,8 @@ export const Addiv = styled("div")(() => ({
 export const LeftAdd = styled("div")(() => ({
 }))
 export const RightAdd = styled("div")(() => ({
-  padding: "0px 20px"
+  padding: "0px 20px",
+  overflow: "hidden"
 }))
 export const SpanButton = styled("div")(() => ({
   padding: "10px 0px",
@@ -196,7 +224,12 @@ export const SpanButton = styled("div")(() => ({
   fontWeight: "800",
 
 }))
-export const AbodyL = styled("div")({})
+export const AbodyL = styled("div")({
+  "@media(max-width:1066px)": {
+    fontSize: "15px"
+  }
+
+})
 export const AbodyR = styled("div")({})
 export const BtnDiv = styled("div")(() => ({
   fontSize: "18px",

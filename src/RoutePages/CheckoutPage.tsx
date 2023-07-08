@@ -309,13 +309,13 @@ export default function CheckoutPage() {
               </BillP>
               {coupon ? <BillP>
                 <BillSpan>Discount</BillSpan>
-                <BillSpan>Rs {(total + 0.1 * total + 30) * 0.1}</BillSpan>
+                <BillSpan>Rs {total ? (total + 0.1 * total + 30) * 0.1 : 0}</BillSpan>
               </BillP> : ""}
               <hr />
               <BillBP>
                 <BillBSpan>To Pay</BillBSpan>
                 <BillBSpan>{
-                  address ? <>Rs {total + (total == 0 ? 0 : 30) + 0.1 * total - (coupon ? (total + 0.1 * total + 30) * 0.1 : 0)}</> : <>Rs --</>
+                  address ? <>Rs {total + (total == 0 ? 0 : 30) + 0.1 * total - (coupon ? total ? (total + 0.1 * total + 30) * 0.1 : 0 : 0)}</> : <>Rs --</>
                 }
 
                 </BillBSpan>

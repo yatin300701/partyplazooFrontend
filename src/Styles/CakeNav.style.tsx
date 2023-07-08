@@ -17,7 +17,6 @@ export const CompanyImg = styled("img")(() => ({
   "@media(max-width:658px)": {
     width: "150px"
   },
-  // 512
   "@media(max-width:512px)": {
     width: "100px"
   }
@@ -32,12 +31,10 @@ export const CakePlace = styled("div")(() => ({
   "@media(max-width:658px)": {
     fontSize: "14px"
   },
-  // fontSize: "12px"
   "@media(max-width:512px)": {
     fontSize: "12px",
     margin: "5px"
   },
-
 }));
 export const CakeNavRight = styled("div")(() => ({
   display: "flex",
@@ -57,5 +54,8 @@ export const CakePlaceLocation = styled("select")(() => ({
   },
   "@media(max-width:512px)": {
     fontSize: "10px"
+  },
+  "@media(max-width:402px)": {
+    display: "none"
   }
 }));

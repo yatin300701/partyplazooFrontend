@@ -12,15 +12,11 @@ export default function Filter(props: any) {
 
     useEffect(() => {
         const delay = setTimeout(() => {
-            if (search != "") {
-                props?.setCopyData(props.copydata.filter((e: any) => {
-                    const normalizedString = e.name.toLowerCase().replace(/\s/g, '');
-                    const normalizedSubstring = search.toLowerCase().replace(/\s/g, '');
-                    return normalizedString.includes(normalizedSubstring);
-                }))
-            }
-            else
-                props?.setCopyData(props.copydata)
+            props?.setCopyData(props.copydata.filter((e: any) => {
+                const normalizedString = e.name.toLowerCase().replace(/\s/g, '');
+                const normalizedSubstring = search.toLowerCase().replace(/\s/g, '');
+                return normalizedString.includes(normalizedSubstring);
+            }))
         }, 500)
         return () => clearTimeout(delay)
     }, [search])
