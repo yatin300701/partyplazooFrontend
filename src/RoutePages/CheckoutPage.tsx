@@ -64,7 +64,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { useNavigate } from "react-router-dom";
 import CouponCard from "../Helpers/CouponCard";
-import { Display } from "../Styles/Home.style";
 
 export default function CheckoutPage() {
   const [reload, setReload] = useState(false);

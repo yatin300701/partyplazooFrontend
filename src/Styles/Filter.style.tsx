@@ -1,5 +1,4 @@
 import { styled } from "@mui/material";
-import { theme } from "../mui-theme";
 
 export const FilterBody = styled("div")(() => ({
     display: "flex",
