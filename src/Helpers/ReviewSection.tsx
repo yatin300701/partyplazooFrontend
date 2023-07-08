@@ -63,7 +63,6 @@ export default function ReviewSection() {
         `https://backendpartyplazoo.up.railway.app/api/comments/comments/${id}`,
         config
       );
-      console.log("resu", result.data.data)
       const comments = result?.data?.data
       const mycomment = comments.filter(
         (obj: any) => obj.userId == user._id
@@ -74,7 +73,6 @@ export default function ReviewSection() {
 
       setMyreview(mycomment);
       setComments(restComment);
-      console.log("comments", comments, myreview)
       const falseArray = Array(comments.length).fill(false);
       setReply(falseArray);
     } catch (e: any) {

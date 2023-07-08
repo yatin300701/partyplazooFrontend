@@ -181,7 +181,7 @@ export default function LoginComponent(props: any) {
               style={{ margin: "0px 0px 10px 0px" }}
               onClick={handleTempLogin}
             >
-              Temporary Login
+              Guest Login
             </Button>
             <DrawerTandC>
               By clicking on Login, I accept the

@@ -20,10 +20,13 @@ import axios from "axios";
 import Advertisements from "../Helpers/Advertisements";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import Filter from "../Helpers/Filter";
 
 export default function ChooseCakePage() {
   const [reload, setReload] = useState(false);
   const [data, setData] = useState<any>([]);
+  const [copydata, setCopyData] = useState<any>([]);
+  const [load, setLoad] = useState(true)
 
   const navigate = useNavigate();
   const count = useSelector((state: RootState) => state.cart.count);
@@ -37,6 +40,9 @@ export default function ChooseCakePage() {
   const getData = async () => {
     let result = await axios.get("https://backendpartyplazoo.up.railway.app/api/products/cake");
     setData(result?.data?.data);
+    setCopyData(result?.data?.data)
+    console.log("copydata", copydata, result?.data?.data)
+    setLoad(false)
   };
   const handleNext = () => {
     navigate("/decoration");
@@ -75,8 +81,10 @@ export default function ChooseCakePage() {
           </Heading>
 
           <hr style={{ color: theme.customPalette.Grey }} />
+
+          <Filter setCopyData={setCopyData} copydata={data} />
           <Cakes>
-            {data.length != 0 ? data?.map((props: any, index: any) => (
+            {!load ? copydata.length != 0 ? copydata?.map((props: any, index: any) => (
               <Box
                 key={index}
                 style={{ textDecoration: "none" }}
@@ -98,7 +106,7 @@ export default function ChooseCakePage() {
                   </CardStyled>
                 </CardOuter>
               </Box>
-            )) : <>
+            )) : <div style={{ height: "500px" }}>No Data Found</div> : <>
 
               <Card>
                 <CardMedia>

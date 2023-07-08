@@ -58,10 +58,13 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import EmailIcon from '@mui/icons-material/Email';
 import SignOut from "../Helpers/SignOut";
+import ClearIcon from '@mui/icons-material/Clear';
 import PersonIcon from '@mui/icons-material/Person';
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { useNavigate } from "react-router-dom";
+import CouponCard from "../Helpers/CouponCard";
+import { Display } from "../Styles/Home.style";
 
 export default function CheckoutPage() {
   const [reload, setReload] = useState(false);
@@ -72,6 +75,8 @@ export default function CheckoutPage() {
   const [address, setAddress] = useState("");
   const [location, setLocation] = useState("")
   const [signOut, setSignOut] = useState(false)
+  const [couponCardToggle, setCouponCardToggle] = useState(false)
+  const [coupon, setCoupon] = useState("")
 
   const navigate = useNavigate()
 
@@ -85,9 +90,12 @@ export default function CheckoutPage() {
     let totalNum: any = cart.reduce((acc: any, obj: any) => acc + (Number(obj.price)) * Number(obj.quantity), 0)
 
     setTotal(Number(totalNum))
+    const couponi = localStorage.getItem("coupon")
+
+    couponi != null || couponi == "" ? setCoupon(couponi) : setCoupon("");
     const location = localStorage.getItem("address")
-    location != null ? setAddress(location) : setAddress("")
-    location != null ? setLocation(location) : setLocation("")
+    location != null || location == "" ? setAddress(location) : setAddress("")
+    location != null || location == " " ? setLocation(location) : setLocation("")
 
     const useri = localStorage.getItem("user")
     if (!useri) return;
@@ -159,14 +167,14 @@ export default function CheckoutPage() {
 
                     </div>
                   ) : (
-                    <>
-                      <HaveAccount onClick={() => setLoginToggle(true)}>
+                    <div style={{ display: "flex", height: "100px" }}>
+                      <HaveAccount style={{ height: "50px" }} onClick={() => setLoginToggle(true)}>
                         Log In
                       </HaveAccount>
-                      <SignUp onClick={() => setSignupToggle(true)}>
+                      <SignUp style={{ height: "50px" }} onClick={() => setSignupToggle(true)}>
                         Sign Up
                       </SignUp>
-                    </>
+                    </div>
                   )}
                 </AbodyL>
                 <AbodyR>
@@ -274,14 +282,14 @@ export default function CheckoutPage() {
                 Any Suggestions? We will pass it on...
                 <FormatQuoteIcon style={{ fontSize: "15px" }} />
               </Suggestions>
-              <ApplyCoupon>
+              <ApplyCoupon style={{ cursor: "pointer" }}>
                 {" "}
-                <PercentIcon
+                {coupon == "" ? <div onClick={() => setCouponCardToggle(true)}><PercentIcon
                   style={{
                     fontSize: "18px",
                   }}
                 />{" "}
-                &nbsp; Apply Coupon
+                  &nbsp; Apply Coupon</div> : <>{coupon}  &nbsp; &nbsp; &nbsp; <ClearIcon onClick={() => { localStorage.setItem("coupon", ""), setCoupon("") }} style={{ fontSize: "20px" }} /></>}
               </ApplyCoupon>
             </Coupons>
             <Bills>
@@ -300,11 +308,15 @@ export default function CheckoutPage() {
                 <BillSpan>GST</BillSpan>
                 <BillSpan>Rs {0.1 * total}</BillSpan>
               </BillP>
+              {coupon ? <BillP>
+                <BillSpan>Discount</BillSpan>
+                <BillSpan>Rs {(total + 0.1 * total + 30) * 0.1}</BillSpan>
+              </BillP> : ""}
               <hr />
               <BillBP>
                 <BillBSpan>To Pay</BillBSpan>
                 <BillBSpan>{
-                  address ? <>Rs {total + (total == 0 ? 0 : 30) + 0.1 * total}</> : <>Rs --</>
+                  address ? <>Rs {total + (total == 0 ? 0 : 30) + 0.1 * total - (coupon ? (total + 0.1 * total + 30) * 0.1 : 0)}</> : <>Rs --</>
                 }
 
                 </BillBSpan>
@@ -328,7 +340,9 @@ export default function CheckoutPage() {
       />
       <SignOut loginToggle={signOut}
         setUser={setUser}
-        setLoginToggle={setSignOut} />
+        setLoginToggle={setSignOut}
+        setReload={setReload} />
+      <CouponCard couponCardToggle={couponCardToggle} setCouponCardToggle={setCouponCardToggle} setReload={setReload} />
     </>
   );
 }

@@ -37,6 +37,8 @@ import SignUpComponent from "../Helpers/SignUpComponent";
 import SnackbarComponent from "../Helpers/Snackbar";
 import { useNavigate } from "react-router-dom";
 import { MdPersonOutline } from "react-icons/md";
+import SignOut from "../Helpers/SignOut";
+import { LogoutOutlined } from "@mui/icons-material";
 
 export default function HomePage() {
   const [loginToggle, setLoginToggle] = useState(false);
@@ -46,6 +48,7 @@ export default function HomePage() {
   const [reload, setReload] = useState(false);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [signOut, setSignOut] = useState(false)
   const [type, setType] = useState("");
 
   const navigate = useNavigate();
@@ -105,7 +108,7 @@ export default function HomePage() {
                 <PartyPImg src={CmpImg} alt="Company Logo"></PartyPImg>
               </CompanyImg>
               <Btn>
-                {!user.username ? <><LoginBtn
+                {!user || !user.username ? <><LoginBtn
                   onClick={() => {
                     setLoginToggle(true);
                   }}
@@ -126,7 +129,10 @@ export default function HomePage() {
                       justifyContent: "center",
                     }}
                   >
-                    <MdPersonOutline /> &nbsp;Welcome {user.username}
+                    <>
+                      <MdPersonOutline /> &nbsp;{user?.username} &nbsp;  </> <LogoutOutlined style={{ cursor: "pointer" }} onClick={() => {
+                        setSignOut(true);
+                      }} />
                   </div></>}
                 <LoginComponent
                   setReload={setReload}
@@ -242,11 +248,18 @@ export default function HomePage() {
       <FooterBodyComponent />
       <SnackbarComponent
         open={open}
-        duration={2000}
+        duration={2500}
         setOpen={setOpen}
         message={message}
         type={type}
       />
+      <SignOut
+        setReload={setReload}
+        loginToggle={signOut}
+        setUser={setUser}
+        setLoginToggle={setSignOut}
+      />
+
     </>
   );
 }
