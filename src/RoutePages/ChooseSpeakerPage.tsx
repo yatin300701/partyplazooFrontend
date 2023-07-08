@@ -26,8 +26,8 @@ import Filter from "../Helpers/Filter";
 export default function ChooseSpeakerPage() {
   const [reload, setReload] = useState(false);
   const navigate = useNavigate();
-  const [data, setData] = useState<any>([]);
-  const [copydata, setCopyData] = useState<any>([]);
+  const [data, setData] = useState<any>(null);
+  const [copydata, setCopyData] = useState<any>(null);
 
   const count = useSelector((state: RootState) => state.cart.count);
 
@@ -43,6 +43,7 @@ export default function ChooseSpeakerPage() {
     let result = await axios.get("https://backendpartyplazoo.up.railway.app/api/products/others");
     setData(result?.data?.data);
     setCopyData(result?.data?.data)
+    console.log("data", data, copydata, result?.data?.data)
   };
 
   const handleNext = () => {
@@ -94,7 +95,7 @@ export default function ChooseSpeakerPage() {
           <hr style={{ color: theme.customPalette.Grey }} />
           <Filter setCopyData={setCopyData} copydata={data} />
           <Cakes>
-            {copydata.length != 0 ? copydata?.map((props: any, index: any) => (
+            {copydata != null ? copydata.length != 0 ? copydata?.map((props: any, index: any) => (
               <Box
                 key={index}
                 style={{ textDecoration: "none" }}
@@ -115,7 +116,7 @@ export default function ChooseSpeakerPage() {
                   </CardStyled>
                 </CardOuter>
               </Box>
-            )) : <>
+            )) : <>Not Found</> : <>
 
               <Card>
                 <CardMedia>
